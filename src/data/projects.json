@@ -1,0 +1,27 @@
+[
+    {
+        "name" : "Leap Year",
+        "description" : "This is a python code to calculate leap years.",
+        "link" : "https://github.com/Topsy-yy/Leap_year.git"
+    },
+    {
+        "name" : "Recursion",
+        "description" : "This is a python code to implement Recursion.",
+        "link" : "https://github.com/Topsy-yy/Recursion.git"
+    },
+    {
+        "name" : "Works",
+        "description" : "Some other random works I've done.",
+        "link" : "https://github.com/Topsy-yy/ClassWork.git"
+    },
+    {
+        "name" : "Project Zee",
+        "description" : "You can also check this one out.",
+        "link" : "https://github.com/"
+    },
+    {
+        "name" : "Project Gee",
+        "description" : "Lastly, for my final project on the list.",
+        "link" : "https://github.com/"
+    }
+]
