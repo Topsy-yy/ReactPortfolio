@@ -129,12 +129,7 @@ function ArticleContactFormContent({ dataWrapper, selectedItemCategoryId, setSho
 
         let apiResponse
         if(!fakeEmailRequests) {
-            apiResponse = await api.handlers.sendEmailRequest(
-                apiValidation.bundle,
-                dataWrapper.settings.emailJsPublicKey,
-                dataWrapper.settings.emailJsServiceId,
-                dataWrapper.settings.emailJsTemplateId,
-            )
+            apiResponse = await api.handlers.sendEmailRequest(apiValidation.bundle)
         }
         else {
             apiResponse = await api.handlers.dummyRequest()

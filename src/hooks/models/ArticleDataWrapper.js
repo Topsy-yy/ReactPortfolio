@@ -69,10 +69,6 @@ export default class ArticleDataWrapper {
             maxRowsCollapseThreshold: rawSettings["max_rows_collapse_threshold"] || undefined,
             roundIcons: Boolean(rawSettings["round_icons"]) || undefined,
 
-            // - ArticleContactForm
-            emailJsPublicKey: rawSettings["email_js_public_key"] || undefined,
-            emailJsServiceId: rawSettings["email_js_service_id"] || undefined,
-            emailJsTemplateId: rawSettings["email_js_template_id"] || undefined,
         }
     }
 

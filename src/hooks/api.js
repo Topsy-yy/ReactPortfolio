@@ -4,7 +4,6 @@
  * @description This hook provides methods to interact with external APIs.
  */
 
-import emailjs from "@emailjs/browser"
 import {useConstants} from "/src/hooks/constants.js"
 import {useUtils} from "/src/hooks/utils.js"
 
@@ -49,7 +48,7 @@ const validators = {
                 custom_subject: subject,
                 message: message,
                 custom_source: utils.url.getAbsoluteLocation(),
-                custom_source_name: "React Portfolio"
+                custom_source_name: "Ingridius Finelite Portfolio"
             }
         }
     }
@@ -70,24 +69,25 @@ const handlers = {
 
     /**
      * @param {Object} validationBundle
-     * @param {String} publicKey
-     * @param {String} serviceId
-     * @param {String} templateId
+     * @param {String} endpoint
      * @return {Promise<{success: boolean}>}
      */
-    sendEmailRequest: async (validationBundle, publicKey, serviceId, templateId) => {
-        emailjs.init(publicKey)
-
-        const response = {success: false}
-
+    sendEmailRequest: async (validationBundle, endpoint = import.meta.env.VITE_CONTACT_ENDPOINT || "/api/send-mail.php") => {
         try {
-            const result = await emailjs.send(serviceId, templateId, validationBundle)
-            response.success = result.status === 200
-        } catch (error) {
-            response.success = false
-        }
+            const result = await fetch(endpoint, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(validationBundle),
+            })
 
-        return response
+            if(!result.ok)
+                return {success: false}
+
+            const response = await result.json()
+            return {success: response.success === true}
+        } catch {
+            return {success: false}
+        }
     }
 }
 
@@ -98,15 +98,6 @@ const analytics = {
      * @returns {Promise<void>}
      */
     reportVisit: async() => {
-        await fetch("https://admin.ryanbalieiro.com/api/analytics/mock", {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                params: {
-                    url: utils.url.getRootLocation(),
-                    template_id: "react-portfolio"
-                }
-            })
-        })
+        return Promise.resolve()
     }
 }

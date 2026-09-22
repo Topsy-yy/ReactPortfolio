@@ -15,7 +15,7 @@ Key features:
 - Comes with both dark and light theme options.
 - A variety of components to highlight your work experience, education, skills, portfolio, and more.
 - Uses **Vite** for packaging.
-- Emails with **EmailJS** - no backend needed!
+- Contact messages are delivered through a server-side **PHPMailer** endpoint.
 
 ## Live Preview
 
@@ -60,6 +60,17 @@ npm install
 ```
 npm run dev
 ```
+
+### Contact Mailer
+
+The contact form posts to `api/send-mail.php`. Install the PHP dependencies with Composer, copy `.env.example` to `.env`, and fill in the SMTP credentials before running a PHP-capable server:
+
+```
+composer install
+cp .env.example .env
+```
+
+Set `VITE_CONTACT_ENDPOINT` when the PHP API is hosted at a different URL. The GitHub Pages workflow only publishes the static React build, so it cannot execute the PHP endpoint; deploy `api/send-mail.php` and `vendor/` to a PHP-capable host and set `APP_ALLOWED_ORIGIN` to the portfolio URL.
 
 ## Customization Tutorial
 
@@ -106,7 +117,7 @@ It's based on the **[React](https://reactjs.org/)** framework created by Jordan 
 Additional frameworks and plugins used include:
 - **Smooth Scrollbar**: A customizable scrollbar plugin.
 - **Swiper**: A powerful library for creating touch sliders.
-- **EmailJS**: A free service that allows you to send emails using JavaScript.
+- **PHPMailer**: SMTP mail delivery for the contact form.
 - **Font Awesome**: A library of free vector icons.
 - **PrimeIcons**: A collection of premium line icons.
 
